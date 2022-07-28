@@ -1,4 +1,5 @@
 import React from 'react';
+import './View.css'
 
 const View = ({receipts}) => {
     return receipts.map((receipt,index)=>(
