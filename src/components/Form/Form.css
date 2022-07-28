@@ -6,6 +6,12 @@
 label,input,select{
     margin-top: 10px;
 }
+select{
+    width: 30%;
+}
+input,select{
+    border-radius: 5px;
+}
 .input-full{
     width: 50%;
 }
@@ -19,6 +25,39 @@ button{
     margin-left: 20px;
 }
 .main-div{
-    border: 1px solid black;
-    padding: 100px 30px;
+    margin-top: 18px;
+    margin-bottom: 30px;
+    border: none;
+    background-color: rgba(211, 211, 211, 0.26);
+    padding-top: 20px;
+    padding-bottom: 100px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+h4{
+    text-decoration: underline;
+}
+span{
+    color: red;
+}
+.cancel{
+    border: 1px solid rgb(214, 10, 10);
+    /* background-color: white; */
+    padding: 8px 30px;
+    border-radius: 3px;
+    color: rgb(214, 10, 10);
+    font-weight: 600;
+}
+.submit{
+    border: 1px solid rgb(4, 121, 4);
+    background-color: rgb(4, 121, 4);
+    padding: 8px 30px;
+    border-radius: 3px;
+    color: white;
+    font-weight: 600;
+}
+@media only screen and (max-width:576px) {
+    label,input,select{
+        margin-top: 19px;
+    }
 }

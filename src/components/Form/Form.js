@@ -38,9 +38,10 @@ const Form = () => {
         setPaymentMethod('');
         setRemark('');
     }
-
+    
     // Cancel button functionalities
     const handleCancelButton = (e) => {
+        e.preventDefault();
         setDate('');
         setAmount('');
         setPaymentMethod('');
@@ -55,30 +56,35 @@ const Form = () => {
         <div>
             <div className='container main-div'>
                 <h4>Receipt Details</h4>
-                <form onSubmit={handleAddReceiptSubmit} autoComplete='off'>
+                <form autoComplete='off'>
                     <div className='form-style'>
                         <div>
-                            <label>Date:</label> <br />
-                            <label>Amount:</label> <br />
-                            <label className='mt-4'>Payment Method:</label> <br />
-                            <label>Remark:</label> <br />
+                            <label>Date<span>*</span></label> <br />
+                            <label>Amount<span>*</span></label> <br />
+                            <label className='mt-3'>Payment Method<span>*</span></label> <br />
+                            <label  className='mt-3'>Remark</label> <br />
                         </div>
                         <div>
-                            <input onChange={(e) => setDate(e.target.value)} value={date} placeholder="Enter Date" type="text" /> <br />
-                            <input onChange={(e) => setAmount(e.target.value)} value={amount} placeholder="Enter Amount (in INR)" className='input-full' type="text" /> <br />
-                            <select onChange={(e) => setPaymentMethod(e.target.value)}  name="cars" id="cars">
+                            <input required onChange={(e) => setDate(e.target.value)} value={date} placeholder="Enter Date" type="text" /> <br />
+                            <input required onChange={(e) => setAmount(e.target.value)} value={amount} placeholder="Enter Amount (in INR)" className='input-full' type="text" /> <br />
+                            <select required value={paymentMethod} onChange={(e) => setPaymentMethod(e.target.value)}>
+                                <option>Chose</option>
                                 <option value="Cash">Cash</option>
                                 <option value="Card">Card</option>
                             </select> <br />
-                            <input onChange={(e) => setRemark(e.target.value)} value={remark} placeholder="Enter Remark" type="text" /> <br />
+                            <input className='input-full' onChange={(e) => setRemark(e.target.value)} value={remark} placeholder="Enter Remark" type="text" /> <br />
                         </div>
                     </div>
                     <div className='button-style'>
                         <div>
-                            <button onClick={handleCancelButton}>CANCEL</button>
+                            <button className='cancel' onClick={handleCancelButton}>CANCEL <br />
+                            <u>(ESC)</u>
+                            </button>
                         </div>
                         <div>
-                            <button>SUBMIT</button>
+                            <button onClick={handleAddReceiptSubmit} className='submit'>SUBMIT <br />
+                            <u>(S)</u>
+                            </button>
                         </div>
                     </div>
                 </form>
@@ -86,9 +92,10 @@ const Form = () => {
             <div className='container'>
                 {receipts.length > 0 && <>
                     <div>
-                        <table class="table">
+                        <table class="table table-bordered border-primary">
                             <thead>
                                 <tr>
+                                    <th scope="col">Serial</th>
                                     <th scope="col">Date</th>
                                     <th scope="col">Amount</th>
                                     <th scope="col">Payment Method</th>
@@ -101,7 +108,7 @@ const Form = () => {
                         </table>
                     </div>
                 </>}
-                {receipts.length < 1 && <div>No records available</div>}
+                {receipts.length < 1 && <div className='fs-5 text-danger'>No records available</div>}
             </div>
         </div>
     );
